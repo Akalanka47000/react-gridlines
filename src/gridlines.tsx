@@ -1,8 +1,26 @@
 import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import buildGridSvg from "./svgBuilder";
+import buildGridSvg from "./svg-builder";
 
-const GridLines = React.forwardRef((props, ref) => {
+interface GridLinesProps {
+  className?: string;
+  component?: React.ElementType;
+  cellWidth?: number | string;
+  cellHeight?: number | string;
+  format?: string;
+  orientation?: string;
+  lineColor?: string;
+  strokeWidth?: number | string;
+  dashArray?: string;
+  cellWidth2?: number | string;
+  cellHeight2?: number | string;
+  lineColor2?: string;
+  strokeWidth2?: number | string;
+  scale?: number | string;
+  dashArray2?: string;
+  children?: React.ReactNode;
+}
+
+const GridLines: React.FC<GridLinesProps> = React.forwardRef((props, ref) => {
   const {
     component = "div",
     className,
@@ -58,7 +76,7 @@ const GridLines = React.forwardRef((props, ref) => {
     dashArray2,
     format,
     orientation,
-    scale,
+    scale
   ]);
 
   return (
@@ -66,7 +84,7 @@ const GridLines = React.forwardRef((props, ref) => {
       className={className}
       ref={ref}
       style={{
-        backgroundImage: bg,
+        backgroundImage: bg
       }}
       {...rest}
     >
@@ -74,23 +92,5 @@ const GridLines = React.forwardRef((props, ref) => {
     </ComponentProp>
   );
 });
-
-GridLines.propTypes = {
-  className: PropTypes.string,
-  component: PropTypes.elementType,
-  cellWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  cellHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  format: PropTypes.string,
-  orientation: PropTypes.string,
-  lineColor: PropTypes.string,
-  strokeWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  dashArray: PropTypes.string,
-  cellWidth2: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  cellHeight2: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  lineColor2: PropTypes.string,
-  strokeWidth2: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  scale: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  dashArray2: PropTypes.string,
-};
 
 export default GridLines;

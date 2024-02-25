@@ -1,16 +1,27 @@
 {
-  "name": "react-gridlines",
-  "version": "1.1.6",
+  "name": "@mezh-hq/react-gridlines",
+  "version": "0.0.0",
   "description": "React component to draw grid lines in background.",
-  "main": "./build/index.js",
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.esm.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.cjs.js"
+    }
+  },
   "scripts": {
-    "start": "node ./node_modules/webpack/bin/webpack --watch --mode development",
-    "build": "node ./node_modules/webpack/bin/webpack --mode production",
-    "test": "jest"
+    "start": "bun run ./esbuild.config.js --watch",
+    "build": "bun run ./esbuild.config.js && bun build:types",
+    "build:types": "bunx --bun tsc --declaration --emitDeclarationOnly --declarationDir ./dist",
+    "bump-version": "bunx --bun automatic-versioning --disable-auto-sync --recursive $(if [ \"$TAG\" != \"latest\" ]; then echo --prerelease; fi) --prerelease-branch=development --prerelease-tag=$TAG --name=@mezh-hq/react-seat-toolkit --ignore-prefixes=ci",
+    "prepare": "lefthook install",
+    "release": "bunx github:akalanka47000/bunpublish --tag=${TAG:=latest} --provenance",
+    "test": "bun test"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alfed7/gridlines.git"
+    "url": "git+https://github.com/mezh-hq/react-gridlines.git"
   },
   "keywords": [
     "Grid lines",
@@ -21,24 +32,28 @@
   "author": "Alexander Fedorenko",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/alfed7/gridlines/issues"
+    "url": "https://github.com/mezh-hq/react-gridlines/issues"
   },
-  "homepage": "https://github.com/alfed7/gridlines#readme",
+  "homepage": "https://github.com/mezh-hq/react-gridlines#readme",
   "peerDependencies": {
     "js-base64": "^3.0.0",
     "react": ">= 16.10.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.11.6",
-    "@babel/core": "^7.11.6",
-    "babel-loader": "^8.1.0",
+    "@commitlint/cli": "17.4.2",
+    "@commitlint/config-conventional": "17.4.2",
+    "@sliit-foss/automatic-versioning": "2.3.0",
+    "@trivago/prettier-plugin-sort-imports": "4.1.1",
+    "@types/react": ">=16.10.0",
+    "bun-types": "1.0.21",
     "react": ">= 16.10.0",
-    "@babel/plugin-proposal-object-rest-spread": "^7.11.0",
-    "@babel/plugin-transform-react-jsx": "^7.10.4",
-    "@babel/preset-env": "^7.11.5",
-    "@babel/preset-react": "^7.10.4",
+    "esbuild": "0.20.1",
     "jest": "^26.4.2",
-    "webpack": "^4.44.2",
-    "webpack-cli": "^3.3.12"
-  }
+    "lefthook": "1.4.3",
+    "prettier": "2.8.8"
+  },
+  "files": [
+    "build",
+    "package.json"
+  ]
 }

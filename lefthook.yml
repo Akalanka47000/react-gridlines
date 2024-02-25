@@ -1,0 +1,13 @@
+pre-commit:
+  parallel: true
+  commands:
+    format:
+      glob: "*.{js,ts,jsx,tsx}"
+      run: bunx prettier --write --cache {staged_files} && git add {staged_files}
+
+commit-msg:
+  commands:
+    commitlint:
+      skip:
+        - rebase
+      run: npx commitlint --edit --color

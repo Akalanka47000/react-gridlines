@@ -1,21 +1,13 @@
 import { Base64 } from "js-base64";
-import { getPageSize } from "./pageSizes";
+import { getPageSize } from "./page-sizes";
 
 function getWidthAndHeight(pageSize, scale) {
   const k = 1;
-  if (pageSize)
-    return { width: pageSize[0] * k * scale, height: pageSize[1] * k * scale };
+  if (pageSize) return { width: pageSize[0] * k * scale, height: pageSize[1] * k * scale };
   return null;
 }
 
-function buildLine(
-  size,
-  lineColor,
-  strokeWidth,
-  dashArray,
-  offset = 0,
-  isVertical = false
-) {
+function buildLine(size, lineColor, strokeWidth, dashArray, offset = 0, isVertical = false) {
   let cell = isVertical
     ? `<line x1='${offset}' y1='0' x2='${offset}' y2='${size}'`
     : `<line x1='0' y1='${offset}' x2='${size}' y2='${offset}'`;
@@ -24,8 +16,7 @@ function buildLine(
 }
 function buildCell(w, h, lineColor, strokeWidth, dashArray) {
   return (
-    buildLine(h, lineColor, strokeWidth, dashArray, 0, true) +
-    buildLine(w, lineColor, strokeWidth, dashArray, 0, false)
+    buildLine(h, lineColor, strokeWidth, dashArray, 0, true) + buildLine(w, lineColor, strokeWidth, dashArray, 0, false)
   );
 }
 function buildPage(w, h, page, pat) {
@@ -67,14 +58,7 @@ function buildGridSvg(
       cell2 += buildLine(h, lineColor2, strokeWidth2, dashArray2, offset, true);
     }
     for (let offset = h2; offset < h; offset += h2) {
-      cell2 += buildLine(
-        w,
-        lineColor2,
-        strokeWidth2,
-        dashArray2,
-        offset,
-        false
-      );
+      cell2 += buildLine(w, lineColor2, strokeWidth2, dashArray2, offset, false);
     }
   }
   const pat = buildPage(w, h, page, `${cell1}${cell2}`);

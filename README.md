@@ -1,22 +1,25 @@
 # react-gridlines
+
 A grid lines background. Gridlines is a configurable React component.
+
+This project is a fork of [react-gridlines](https://www.npmjs.com/package/react-gridlines) by [alfed7](https://www.npmjs.com/~alfed7) with ESM and TypeScript support.
 
 ![Grid lines screenshot](https://raw.githubusercontent.com/alfed7/gridlines/master/docs/images/gridlines.png "Grid lines screenshot")
 
 # Install
 ```
-npm i -s react-gridlines
+npm i -s @mezh-hq/react-gridlines
 ```
 or
 ```
-yarn add react-gridlines
+yarn add @mezh-hq/react-gridlines
 ```
 
 # Sample
 
 ```javascript
 import React from 'react';
-import GridLines from 'react-gridlines';
+import GridLines from '@mezh-hq/react-gridlines';
 import './App.css';
 
 function App() {

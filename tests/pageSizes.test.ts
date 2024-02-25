@@ -1,4 +1,5 @@
-import { getPageSize } from "./pageSizes";
+import { describe, expect, test } from "bun:test";
+import { getPageSize } from "../src/page-sizes";
 
 describe("page size", () => {
   test("should return a4 dimensions for portrait", () => {
