@@ -53,7 +53,7 @@
     "prettier": "2.8.8"
   },
   "files": [
-    "build",
+    "dist",
     "package.json"
   ]
 }
