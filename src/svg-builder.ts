@@ -21,14 +21,7 @@ function buildCell(w, h, lineColor, strokeWidth, dashArray) {
 }
 function buildPage(w, h, page, pat) {
   if (!page) return pat;
-
-  const p = `<defs>
-  <pattern id="Pattern" x="0" y="0" width="${w}" height="${h}" patternUnits="userSpaceOnUse">
-    ${pat}
-  </pattern>
-</defs>
-<rect fill="url(#Pattern)" stroke="black" width="${page.width}" height="${page.height}"/>
-`;
+  const p = `<defs><pattern id="Pattern" x="0" y="0" width="${w}" height="${h}" patternUnits="userSpaceOnUse">${pat}</pattern></defs><rect fill="url(#Pattern)" stroke="black" width="${page.width}" height="${page.height}"/>`;
   return p;
 }
 function buildGridSvg(
